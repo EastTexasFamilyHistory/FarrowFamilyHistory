@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Census Records - Farrow Family History</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            font-family: 'Mate SC', serif;
+            color: #8B0000;
+            border-bottom: 2px solid #8B0000;
+            padding-bottom: 10px;
+        }
+        .accordion {
+            font-family: 'Mate SC', serif;
+            background-color: #f0f0f0;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            transition: 0.4s;
+            margin-bottom: 5px;
+        }
+        .active, .accordion:hover {
+            background-color: #ddd;
+        }
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            display: none;
+            overflow: hidden;
+        }
+        .panel ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .panel ul li {
+            margin-bottom: 10px;
+        }
+        .panel ul li a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .panel ul li a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Census Records</h1>
+    
+    <button class="accordion">1880s</button>
+    <div class="panel">
+        <ul>
+            <li><a href="census-aj-farrow-1880.html">AJ Farrow Household - 1880</a></li>
+            <!-- Add more census records for this decade as needed -->
+        </ul>
+    </div>
+
+    <button class="accordion">1890s</button>
+    <div class="panel">
+        <ul>
+            <p>Many census records from this year were destroyed in a tragic fire at the Washington D.C. Commerce Department building, on January 10, 1921. More imformation found here at <a href="https://www.archives.gov/research/census/1890#:~:text=On%20January%2010%2C%201921%2C%20a,woe%20of%20researchers%20ever%20since.">Archives.org</a></p>
+            <!-- Add more census records for this decade as needed -->
+        </ul>
+    </div>
+
+    <button class="accordion">1900s</button>
+    <div class="panel">
+        <ul>
+            <li><a href="census-james-perry-1900.html">James Perry Farrow Household - 1900</a></li>
+            <!-- Add more census records for this decade as needed -->
+        </ul>
+    </div>
+
+    <!-- Add more accordion sections for additional decades as needed -->
+
+    <a href="index.html" class="back-link">← Back to main page</a>
+
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
