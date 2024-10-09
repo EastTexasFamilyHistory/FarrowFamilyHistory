@@ -1,0 +1,19 @@
+{
+  "images": [
+    {
+      "id": 1,
+      "src": "/api/placeholder/200/300",
+      "caption": "Great-grandfather John Farrow, circa 1890"
+    },
+    {
+      "id": 2,
+      "src": "/api/placeholder/210/310",
+      "caption": "Farrow family farmhouse, early 1900s"
+    },
+    {
+      "id": 3,
+      "src": "/api/placeholder/220/320",
+      "caption": "Wedding of Mary and Joseph Farrow, 1925"
+    }
+  ]
+}
