@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farrow Family History - Photo Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            font-family: 'Mate SC', serif;
+            text-align: center;
+            color: #940000;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 20px;
+        }
+        .gallery img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+        .caption {
+            margin: 15px 0;
+            display: block;
+            text-align: center;
+            color: #ccc;
+            padding: 10px;
+            width: 80%;
+            max-width: 700px;
+            margin: 10px auto;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #940000;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #7c5f4b;
+        }
+        .home-button {
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+        }
+        .search-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        #search-input {
+            padding: 10px;
+            width: 70%;
+            max-width: 400px;
+        }
+        #search-button {
+            padding: 10px 20px;
+            background-color: #940000;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #search-results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Farrow Family Photo Gallery</h1>
+
+    <a href="index.html" class="button home-button">Back to Home</a>
+
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search captions...">
+        <button id="search-button">Search</button>
+    </div>
+
+    <div id="search-results"></div>
+
+    <div class="gallery" id="gallery"></div>
+
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImg">
+        <p id="caption" class="caption"></p>
+        <div style="text-align: center;">
+            <a href="#" id="downloadBtn" class="button" download>Download</a>
+            <a href="#" id="backBtn" class="button">Back</a>
+        </div>
+    </div>
+
+    <script>
+        let imageData = [];
+
+        const gallery = document.getElementById('gallery');
+        const modal = document.getElementById('myModal');
+        const modalImg = document.getElementById('modalImg');
+        const captionElem = document.getElementById('caption');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const backBtn = document.getElementById('backBtn');
+        const closeBtn = document.getElementsByClassName('close')[0];
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-button');
+        const searchResults = document.getElementById('search-results');
+
+        function loadImages(images) {
+            gallery.innerHTML = '';
+            images.forEach(img => {
+                const imgElem = document.createElement('img');
+                imgElem.src = img.src;
+                imgElem.alt = img.caption;
+                imgElem.onclick = () => openModal(img);
+                gallery.appendChild(imgElem);
+            });
+        }
+
+        function openModal(img) {
+            modal.style.display = 'block';
+            modalImg.src = img.src;
+            captionElem.textContent = img.caption;
+            downloadBtn.href = img.src;
+        }
+
+        closeBtn.onclick = () => modal.style.display = 'none';
+        backBtn.onclick = () => modal.style.display = 'none';
+
+        searchButton.onclick = () => {
+            const query = searchInput.value.toLowerCase();
+            const results = imageData.filter(img => 
+                img.caption.toLowerCase().includes(query)
+            );
+            loadImages(results);
+            searchResults.textContent = results.length ? 
+                `Found ${results.length} matching images` :
+                'No results found';
+        };
+
+        // Load image data from JSON file
+        fetch('image-data.json')
+            .then(response => response.json())
+            .then(data => {
+                imageData = data.images;
+                loadImages(imageData);
+            })
+            .catch(error => console.error('Error loading image data:', error));
+    </script>
+</body>
+</html>
