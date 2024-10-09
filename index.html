@@ -4,43 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farrow Family History - Digital Archives</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
+            margin: 0;
             padding: 20px;
             background-image: url('tree-background.png');
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
             background-repeat: no-repeat;
-
         }
         h1, h2 {
             font-family: Mate SC, serif;
             color: #8B0000;
             border-bottom: 2px solid #8B0000;
             padding-bottom: 10px;
-        }
-        .document-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        .document-list li {
-            margin-bottom: 10px;
-        }
-        .document-list a, .download-link {
-            color: #0066cc;
-            text-decoration: none;
-        }
-        .document-list a:hover, .download-link:hover {
-            text-decoration: underline;
         }
         .download-section {
             background-color: #f0f0f0;
@@ -72,65 +52,177 @@
             margin-left: 20%;
             margin-right: 20%;
         }
-        .centered-image {
+        .center {
             display: block;
-            max-width: 100%;
-            height: auto;
             margin-left: auto;
             margin-right: auto;
-        
         }
-
-
-
-    
-            
-         }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+        .caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            height: 150px;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <h1>Farrow Family History - Digital Archives</h1>
-    
+
     <div class="download-section">
         <h2>Download PDF Version</h2>
         <p>Access the complete Farrow Family History book in PDF format. This digital version includes all the content from the physical book.</p>
-        <a href="#" class="download-button">Download PDF (size)</a>
+        <a href="#" class="button">Download PDF (size)</a>
     </div>
-<img src="house-1890.png" alt="an old photo of a family in front of a house" class="centered-image">
-<a style= "text-align: center" href="photo-gallery.html" class="button">Farrow Family 
-Photo Gallery</a>
-<p style="text-align: center"><i>Submit your own photos to
-EastTexasFamilyHistory@gmail.com</i></p>
+
+    <img id="familyImage" src="house-1890.jpg" alt="an old photo of a family in front of a house" class="center" style="cursor:pointer;">
+    <p style="text-align: center;">
+        <a href="#" class="button">Farrow Family Photo Gallery</a>
+    </p>
+
+    <p><em>Submit your own photos to EastTexasFamilyHistory@gmail.com</em></p>
+
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="caption" class="caption"></div>
+        <button id="backButton" class="button" style="position: absolute; left: 20px; bottom: 20px;">Back</button>
+        <button id="downloadButton" class="button" style="position: absolute; right: 20px; bottom: 20px;">Download</button>
+    </div>
+
     <h2>Documents</h2>
-    <ul class="document-list">
+    <ul>
         <li><a href="birth-records.html">Birth Certificates</a></li>
-        <li><a href="marriage-records">Marriage Certificates</a></li>
+        <li><a href="#">Marriage Certificates</a></li>
         <li><a href="census-records.html">Census Records</a></li>
-        <li><a href="military-service">Military Service</a></li>
+        <li><a href="#">Military Service</a></li>
         <li><a href="#">Newspaper Clippings and Obituaries</a></li>
-        <li><a href= "#">Yearbook Pages</a></li>
-        <li><a href="death-records">Death Certificates</a></li>
+        <li><a href="#">Yearbook Pages</a></li>
+        <li><a href="#">Death Certificates</a></li>
     </ul>
-    
+
     <h2>Research Sources:</h2>
-    <ul class="document-list">
+    <ul>
         <li><a href="https://digital.sfasu.edu/">Stephen F. Austin - East Texas Digital Archives</a></li>
         <li><a href="https://digitalcommons.tamuc.edu/scua/">Texas A&M Commerce - Special Collections & Digital Archives</a></li>
         <li><a href="https://www.familysearch.org/en/wiki/Texas_Vital_Records">Family Search - Texas Vital Records</a></li>
         <li><a href="#">Interview Transcripts with Family</a></li>
-        <li><a href="https://www.findagrave.com/virtual-cemetery/1877641">FindAGrave - Digital  Cemetery with Farrow Family Graves</a></li>
-        <li><a href='https://texashistory.unt.edu/explore/titles/t01950/'> Portal to Texas History- Gilmer Mirror Archive</a>
-            <i>Relevant articles are added in the <a href="#">"Newspaper Clippings"</a> section</i></li>
+        <li><a href="#">FindAGrave - Digital Cemetery with Farrow Family Graves</a></li>
+        <li><a href="#">Newspapers.com - Gilmer Mirror Archive</a> <em>Relevant articles are added in the "Newspaper Clippings" section</em></li>
         <li><a href="https://sites.rootsweb.com/~txupshur/index.html">Roots Web - Upshur County History</a></li>
     </ul>
-    
+
     <h2>Infographics</h2>
-    <ul class="document-list">
+    <ul>
         <li><a href="#">Family Timeline</a></li>
         <li><a href="#">Atlas of Family Homes</a></li>
         <li><a href="#">Farrow Family Tree</a></li>
-    
+    </ul>
+
     <p>For any questions or additional information, please email me at EastTexasFamilyHistory@gmail.com</p>
+
     <p>Page owned and maintained with love and care by Keyora Wheeler ♡</p>
+
+    <script>
+        let images = [];
+        let currentImageIndex = 0;
+
+        // Fetch the image data from the JSON file
+        fetch('image-data.json')
+            .then(response => response.json())
+            .then(data => {
+                images = data;
+                if (images.length > 0) {
+                    showImage(0);
+                    setInterval(shuffleImage, 5000); // Change image every 5 seconds
+                }
+            })
+            .catch(error => console.error('Error loading image data:', error));
+
+        function showImage(index) {
+            const imgElement = document.getElementById('familyImage');
+            imgElement.src = images[index].url;
+            imgElement.alt = images[index].description;
+        }
+
+        function shuffleImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            showImage(currentImageIndex);
+        }
+
+        // Modal functionality
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const captionText = document.getElementById("caption");
+        const closeBtn = document.getElementsByClassName("close")[0];
+        const backBtn = document.getElementById("backButton");
+        const downloadBtn = document.getElementById("downloadButton");
+
+        document.getElementById("familyImage").onclick = function() {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = images[currentImageIndex].description;
+        }
+
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        backBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        downloadBtn.onclick = function() {
+            const link = document.createElement('a');
+            link.href = modalImg.src;
+            link.download = 'farrow_family_photo.jpg';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Close the modal when clicking outside the image
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
