@@ -2,32 +2,32 @@
   "images": [
     {
       "id": 1,
-      "src": "/images/house-1890.png",
+      "src": "images/house-1890.png",
       "caption": "Farrow Family in front of their house in Georgia, 1890. Left to Right:Esty, James, Eady, Sophia, Arthur (held), Beulah, Rosella"
     },
     {
       "id": 2,
-      "src": "/images/june-mike-1953.jpg",
+      "src": "images/june-mike-1953.jpg",
       "caption": "New Mother June Farrow (née Craig) holding infant son Mike Farrow, June 1953"
     },
     {
       "id": 3,
-      "src": "/images/mike-1959-2.jpg",
+      "src": "images/mike-1959-2.jpg",
       "caption": "Young Mike Farrow acting silly on a family roadtrip, 1960"
     },
     {
       "id": 4
-      "src": "/images/mike-1959.jpg",
+      "src": "images/mike-1959.jpg",
       "caption": "Young Mike Farrow posing on a family roadtrip in Colorado, 1959"
     },
     {
       "id": 5
-      "src": "/images/mike-farrow.jpg"
+      "src": "images/mike-farrow.jpg"
       "caption": "Mike Farrow looking snazzy in a flannel and sunglasses."
     },
     {
       "id": 6 
-      "src": "/images/mike-trish-1959.jpg"
+      "src": "images/mike-trish-1959.jpg"
       "caption": " Young Mike and Trish Farrow dressed in their Sunday Best for Easter, 1959"
     }
   ]
