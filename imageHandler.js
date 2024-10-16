@@ -28,8 +28,9 @@ async function initImageShuffler() {
 // Display next image
 function displayNextImage() {
     const img = document.getElementById('familyImage');
-    img.src = images[currentImageIndex].url;
+    img.src = images[currentImageIndex].src;
     img.alt = images[currentImageIndex].caption;
+    document.getElementById('caption').textContent = images[currentImageIndex].caption;
     currentImageIndex = (currentImageIndex + 1) % images.length;
 }
 
@@ -43,7 +44,7 @@ function openModal(img) {
     modalImg.style.maxHeight = '80vh';
     
     const caption = document.getElementById('caption');
-    caption.innerHTML = img.alt;
+    caption.textContent = img.alt;
     
     modal.style.display = 'block';
     
@@ -59,6 +60,15 @@ function closeModal() {
     modal.style.display = 'none';
 }
 
+// Download current image
+function downloadImage() {
+    const img = document.querySelector('#imageModal img');
+    const link = document.createElement('a');
+    link.href = img.src;
+    link.download = img.src.split('/').pop(); // Use the original filename
+    link.click();
+}
+
 // Event listeners
 document.addEventListener('DOMContentLoaded', () => {
     initImageShuffler();
@@ -69,12 +79,3 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.getElementsByClassName('close')[0];
     closeBtn.addEventListener('click', closeModal);
 });
-
-// Download current image
-function downloadImage() {
-    const img = document.querySelector('#imageModal img');
-    const link = document.createElement('a');
-    link.href = img.src;
-    link.download = 'farrow_family_photo.jpg';
-    link.click();
-}
