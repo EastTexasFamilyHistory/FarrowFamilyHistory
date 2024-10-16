@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farrow Family History: Digital Archives</title>
-    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="styles.css">
     <script src="imageHandler.js" defer></script>
 </head>
 <body>
@@ -17,21 +17,20 @@
     </div>
 
     <img id="familyImage" class="center" style="cursor:pointer;" alt="Farrow Family Photo">
-    <p style="text-align: center;">
-        <a href="photo-gallery.html" class="button">Farrow Family Photo Gallery</a>
-    </p>
+
+    <a href="photo-gallery.html" class="button">Farrow Family Photo Gallery</a>
 
     <p><em>Submit your own photos to EastTexasFamilyHistory@gmail.com</em></p>
 
     <div id="imageModal" class="modal">
-    <span class="close">&times;</span>
-    <div class="modal-content"></div>
-    <div id="caption" class="caption"></div>
-    <div class="modal-buttons">
-        <button onclick="closeModal()">Close</button>
-        <button onclick="downloadImage()">Download</button>
-        <a href="photo-gallery.html" class="button">See More</a>
-    </div>
+        <span class="close">&times;</span>
+        <div class="modal-content"></div>
+        <div id="caption" class="caption"></div>
+        <div class="modal-buttons">
+            <button onclick="closeModal()">Close</button>
+            <button onclick="downloadImage()">Download</button>
+            <a href="photo-gallery.html" class="button">See More</a>
+        </div>
     </div>
 
     <h2>Documents</h2>
@@ -63,72 +62,9 @@
         <li><a href="#">Farrow Family Tree</a></li>
     </ul>
 
-    <p>For any questions or additional information, please email me at EastTexasFamilyHistory@gmail.com</p>
-
-    <p>Page owned and maintained with love and care by Keyora Wheeler ♡</p>
-
-    <script>
-        let images = [];
-        let currentImageIndex = 0;
-
-        
-        fetch('image-data.json')
-            .then(response => response.json())
-            .then(data => {
-                images = data;
-                if (images.length > 0) {
-                    showImage(0);
-                    setInterval(shuffleImage, 5000); // Change image every 5 seconds
-                }
-            })
-            .catch(error => console.error('Error loading image data:', error));
-
-        function showImage(index) {
-            const imgElement = document.getElementById('familyImage');
-            imgElement.src = images[index].url;
-            imgElement.alt = images[index].description;
-        }
-
-        function shuffleImage() {
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            showImage(currentImageIndex);
-        }
-
-        const modal = document.getElementById("imageModal");
-        const modalImg = document.getElementById("modalImage");
-        const captionText = document.getElementById("caption");
-        const closeBtn = document.getElementsByClassName("close")[0];
-        const backBtn = document.getElementById("backButton");
-        const downloadBtn = document.getElementById("downloadButton");
-
-        document.getElementById("familyImage").onclick = function() {
-            modal.style.display = "block";
-            modalImg.src = this.src;
-            captionText.innerHTML = images[currentImageIndex].description;
-        }
-
-        closeBtn.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        backBtn.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        downloadBtn.onclick = function() {
-            const link = document.createElement('a');
-            link.href = modalImg.src;
-            link.download = 'farrow_family_photo.jpg';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
+    <footer>
+        <p>For any questions or additional information, please email me at EastTexasFamilyHistory@gmail.com</p>
+        <p>Page owned and maintained with love and care by Keyora Wheeler ♡</p>
+    </footer>
 </body>
 </html>
